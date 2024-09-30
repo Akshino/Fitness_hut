@@ -30,5 +30,5 @@ openpyxl
 
 django-allauth
 django-jazzmin
->>>>>>> fb6bb59760d72d53ca6cd327fe5724a0899eb3e6
+
 xhtml2pdf
