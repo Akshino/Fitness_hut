@@ -1,0 +1,85 @@
+{% extends 'theme.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <style>
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.ul_ist{
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.list {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.list:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
+}
+
+a {
+    text-decoration: none;
+    color: #ba9e00ea;
+    font-weight: bold;
+    display: block;
+}
+
+a:hover {
+    color: #24d479;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    li {
+        padding: 10px;
+    }
+
+    a {
+        font-size: 16px;
+    }
+}
+
+    </style>
+    <h1>Order List</h1>
+    <ul class="ul_ist">
+      {% for order in orders %}
+      <li  class="list">
+        <a href="{% url 'order_detail' order.id %}">
+          Order ID: {{ order.id }} - Status: {{ order.status }}
+        </a>
+      </li>
+      {% empty %}
+      <li>No orders found.</li>
+      {% endfor %}
+    </ul>
+  </body>
+  </html>
+  {% endblock %}

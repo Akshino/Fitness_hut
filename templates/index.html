@@ -1,0 +1,463 @@
+{% extends 'theme.html' %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+
+
+
+
+
+<style>
+  #home.html
+.shop-title {
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #c7d9df;
+  }
+  
+  .shop-link {
+    padding: 0;
+    margin: 0;
+    display: none; /* Hide initially */
+  }
+  
+  .shop-link li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .shop-link li a {
+    text-decoration: none;
+    color: #086f3f;
+    display: block;
+    padding: 10px;
+  }
+  .card-img-top {
+    height: 300px; /* Set your desired height for the images */
+    object-fit: cover; /* This ensures the image covers the specified area */
+    padding: 5px;
+  }
+  /* Overall content styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #5ff8eea8;
+}
+
+.details-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #03fd2ca8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+/* Left side with product details */
+.details-section > div:first-child {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.details-section p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Right side with product image and button */
+.details-section > div:last-child {
+  flex: 1;
+  text-align: center;
+}
+
+.details-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(237, 228, 228, 0.2);
+  margin-bottom: 20px;
+}
+
+.add-to-cart-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #45a07b;
+  color: #45a07b;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color:#088c7d;
+}
+.btn-primary {
+        background-color: #45a07b;
+        margin-bottom: 10px;
+      }
+.btn-primary:hover {
+        background-color: #157669;
+      }
+
+      .side-menu {
+  width: 250px; /* Adjust width as needed */
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-right: 1px solid #ddd; /* Add a border for separation */
+}
+
+.top-bar {
+  background-color:#8ff7f0a8; /* Change background color */
+  color: #fafcfb; /* Change text color */
+  padding: 5px 10px;
+  border-bottom: 10px solid #ffffff; /* Bottom border */
+  font-weight: bold
+}
+
+.shop-widget {
+  display: flex;
+  align-items: center;
+}
+
+.shop-title {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.shop-link {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shop-link > li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.shop-link > li > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shop-link > li > ul {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9; /* Submenu background color */
+  min-width: 200px;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.shop-link > li:hover > ul {
+  display: block;
+}
+
+.shop-link > li > ul > li {
+  margin: 5px 0;
+}
+
+.shop-link > li > ul > li > a {
+  color: #f10e0e; /* Submenu link color */
+  text-decoration: none;
+}
+
+.shop-link > li > ul > li > a:hover {
+  color: #a04545; /* Submenu link color on hover */
+}
+.wishlist-icon {
+    color: rgb(12, 92, 118);
+    padding: 5px;
+    z-index: 1; /* Ensure icon is above the image */
+}
+
+.card-img-top {
+    position: relative;
+    width: 300px;
+    height: 300;
+    border-radius: 30px;
+    
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    border-radius: 30px;
+    border-left: #34b787;
+    border-bottom: 10px solid #0e2f23; /* Bottom border */
+    
+}
+.card:hover {
+    transform: scale(1.03);
+}
+
+        .chat-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #190485;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .chat-icon i {
+      font-size: 24px; /* Icon size */
+      color: #fff; /* Icon color */
+    }
+
+    .chat-window {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .chat-header {
+      background-color: #ff69b4;
+      color: #fff;
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .chat-body {
+      padding: 10px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .chat-input button {
+      margin-left: 5px;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .chat-input button:hover {
+      background-color: #ff85c0;
+    }
+
+    .hero {
+            background-image: url('hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            background-color: #190485;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #16a4f0;
+        }
+
+
+        
+  
+
+</style>
+
+<center><h2 style="font-weight: bolder; font-family:Arial, Helvetica, sans-serif;"><br>LATEST COLLECTIONS</h2></center>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+      <h2>Optimize Your Fitness Journey with Personalized Supplements</h2>
+      <p>Get tailored supplement recommendations based on your height, weight, age, gender, BMI, and activity level. Fuel your body and achieve your fitness goals effectively.</p>
+      <a href="{% url 'fitness_recommendation' %}" class="cta-button">Get Your Recommendation</a>
+      <a href="https://fitnessrecommendation-bvhqjxgm9c9k9r9h4566p2.streamlit.app/" class="cta-button">Dataset Recommendation</a>
+  </div>
+</section>
+
+
+<!-- HTML structure for the side menu -->
+<div class="top-bar">
+  <div class="shop-widget">
+    <h3 class="shop-title"></h3>
+    <ul class="shop-link">
+      {% for category in categories %}
+      <li>
+        <a href="{% url 'category_products' category.id %}">
+          {{ category.category_name }}
+        </a>
+        <ul>
+          {% for subcategory in category.subcategory_set.all %}
+          <li>
+            <a href="{% url 'subcategory_products' subcategory.id %}">
+              {{ subcategory.subcategory_name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+<br><br><div class="container">
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <a href="{% url 'product_details' product.id %}">
+          <img src="{{product.image.url}}" class="card-img-top" alt="...">
+        </a>
+        <!-- <span class="wishlist-icon position-absolute top-0 end-0">
+          <a href="{% url 'wishlist' %}" class="text-red">
+            <i class="fas fa-heart"></i>
+          </a>
+        </span> -->
+        {% if product.quantity_in_stock == 0 %}
+                                            <span class="stock-status" style="font-size: larger; color: rgb(18, 89, 128);">Out of Stock</span>
+                                        {% elif product.quantity_in_stock < product.reorder_level %}
+                                            <span class="stock-status" style="font-size: larger; color: rgb(29, 85, 138);">Limited Stock</span>
+                                        {% endif %}
+                                        
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">₹{{product.price}}</p>
+          {% if product.quantity_in_stock > 0 %}
+          <form id="add-to-cart-form" action="{% url 'add_to_cart' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" id="cart-button" class="btn btn-primary btn-add-to-cart">
+              Add to Cart
+            </button>
+            <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-primary">Add to Wishlist</a>
+          </form>
+          {% endif %}
+          
+        </div>
+      </div>
+     
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="chat-icon" id="chatIcon">
+  <i class="fas fa-comments"></i> <!-- Better suited icon -->
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">Chat with Us</div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-input">
+    <input type="text" id="userMessage" placeholder="Type your message...">
+    <button id="sendMessage">Send</button>
+  </div>
+</div>
+
+<script>
+  // JavaScript for collapsible div
+  document.addEventListener("DOMContentLoaded", function() {
+    var shopTitle = document.querySelector('.shop-title');
+    var shopLink = document.querySelector('.shop-link');
+    
+    shopTitle.addEventListener('click', function() {
+      if (shopLink.style.display === 'none') {
+        shopLink.style.display = 'block';
+      } else {
+        shopLink.style.display = 'none';
+      }
+    });
+  });
+   // Redirect to chatbot page when chat icon is clicked
+   document.getElementById('chatIcon').onclick = function() {
+    window.location.href = '/chat/'; // Replace '/chatbot/' with the actual URL of your chatbot page
+  };
+
+  // Show tooltip on hover
+  const chatIcon = document.getElementById('chatIcon');
+  const tooltip = document.getElementById('tooltip');
+
+  chatIcon.onmouseover = function() {
+    tooltip.style.display = 'block'; // Show the tooltip on hover
+  };
+
+  chatIcon.onmouseout = function() {
+    tooltip.style.display = 'none'; // Hide the tooltip when not hovering
+  };
+</script>
+
+{% endblock %}
+
+ 
